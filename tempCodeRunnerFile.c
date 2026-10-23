@@ -1,1 +1,2 @@
-= (struct Tree *)malloc(sizeof(struct Tree))
+
+/* Merge two root lists, each sorted by degree. */

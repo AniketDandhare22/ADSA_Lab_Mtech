@@ -55,6 +55,19 @@ void insert(struct Tree **root, int value){
         insert(&((*root)->right), value);
 }
 
+void printTree(struct Tree *root, int parent, int isLeft, int isRoot){
+    if (root == NULL) return;
+
+    if (isRoot)
+        printf("Root: %d\n", root->data);
+    else
+        printf("%d -> %s child: %d\n", parent,
+               isLeft ? "left" : "right", root->data);
+
+    printTree(root->left, root->data, 1, 0);
+    printTree(root->right, root->data, 0, 0);
+}
+
 void deleteNode(struct Tree **root, int key){
     if (*root == NULL)
         return;
@@ -99,6 +112,9 @@ int main(){
     insert(&root, 1);
     insert(&root, 4);
 
+    
+    printTree(root, 0, 0, 1);
+
     printf("Print Inorder traversal for given tree : ");
     inorder(root);
     printf("\nPrint preorder traversal for given tree : ");
@@ -109,6 +125,8 @@ int main(){
     deleteNode(&root, 5);
     printf("\nAfter deleting 5, Inorder traversal : ");
     inorder(root);
+
+
     printf("\n");
     return 0;
 }

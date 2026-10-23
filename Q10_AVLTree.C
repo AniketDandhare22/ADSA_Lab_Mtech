@@ -63,7 +63,6 @@ static Node *insertNode(Node *root, int key) {
 		root->right = insertNode(root->right, key);
 	else
 		return root; 
-        
 
 	root->height = 1 + max(height(root->left), height(root->right));
 	int balance = balanceFactor(root);
@@ -160,7 +159,7 @@ static void freeTree(Node *root) {
 
 int main(void) {
 	Node *root = NULL;
-	int values[] = {10, 20, 30, 40, 50, 25};
+	int values[] = {-1,10, 20, 30, 40, 50, 25};
 	int valueCount = (int)(sizeof(values) / sizeof(values[0]));
 	for (int i = 0; i < valueCount; i++)
 		root = insertNode(root, values[i]);

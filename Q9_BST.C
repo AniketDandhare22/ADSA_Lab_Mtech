@@ -66,6 +66,19 @@ void postorder(struct Tree *root){
     printf("%d ", root->data);
 }
 
+void printTree(struct Tree *root, int parent, int isLeft, int isRoot){
+    if (root == NULL) return;
+
+    if (isRoot)
+        printf("Root: %d\n", root->data);
+    else
+        printf("%d -> %s child: %d\n", parent,
+               isLeft ? "left" : "right", root->data);
+
+    printTree(root->left, root->data, 1, 0);
+    printTree(root->right, root->data, 0, 0);
+}
+
 int main(){
     struct Tree *root = NULL;
     int arr[10]= {5,1,9,6,7,3,2,98,54,11};
@@ -77,7 +90,9 @@ int main(){
 
         root = insert(root, node);
     }
-    deleteNode(root,5);
+    root = deleteNode(root,54);
+    printf("Tree (sideways):\n");
+    printTree(root, 0, 0, 1);
     printf("Print Inorder : ");
     inorder(root);
     printf("\nPrint preorder : ");
